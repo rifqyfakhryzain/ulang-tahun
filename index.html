@@ -1,128 +1,212 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Birthday Surprise! 🎂❤️</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body { font-family: 'Quicksand', sans-serif; scroll-behavior: smooth; }
-        .font-romantis { font-family: 'Dancing Script', cursive; }
-        .fade-in { animation: fadeIn 1s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Class pembantu untuk sembunyikan section */
-        .hidden-section { display: none !important; }
-        
-        /* Efek Kursor Mengetik */
-        .cursor::after {
-            content: '|';
-            animation: blink 0.7s infinite;
+      body {
+        font-family: "Quicksand", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .font-romantis {
+        font-family: "Dancing Script", cursive;
+      }
+      .fade-in {
+        animation: fadeIn 1s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
-        @keyframes blink { 50% { opacity: 0; } }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Class pembantu untuk sembunyikan section */
+      .hidden-section {
+        display: none !important;
+      }
+
+      /* Efek Kursor Mengetik */
+      .cursor::after {
+        content: "|";
+        animation: blink 0.7s infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
     </style>
-</head>
-<body class="bg-rose-50 text-gray-800">
+  </head>
+  <body class="bg-rose-50 text-gray-800">
+    <section
+      id="screen-awal"
+      class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-white to-rose-100"
+    >
+      <div class="text-6xl mb-4 animate-bounce">🎈</div>
+      <h1 class="font-romantis text-5xl md:text-6xl text-rose-600 mb-2 fade-in">
+        Happy Birthday, Sayang!
+      </h1>
+      <p class="text-gray-500 italic mb-8 fade-in">"Ada sesuatu untukmu..."</p>
 
-    <section id="screen-awal" class="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-white to-rose-100">
-        <div class="text-6xl mb-4 animate-bounce">🎈</div>
-        <h1 class="font-romantis text-5xl md:text-6xl text-rose-600 mb-2 fade-in">Happy Birthday, Sayang!</h1>
-        <p class="text-gray-500 italic mb-8 fade-in">"Ada sesuatu untukmu..."</p>
-        
-        <button onclick="mulaiKetik()" class="px-8 py-4 bg-rose-500 text-white font-bold rounded-full shadow-xl active:scale-95 transition duration-300">
-            Buka Kado Dari Aku 🎁
+      <button
+        onclick="mulaiKetik()"
+        class="px-8 py-4 bg-rose-500 text-white font-bold rounded-full shadow-xl active:scale-95 transition duration-300"
+      >
+        Buka ucapan Dari Aku 🎁
+      </button>
+    </section>
+
+    <section
+      id="screen-ucapan"
+      class="hidden-section min-h-screen flex flex-col items-center justify-center text-center p-8 bg-white"
+    >
+      <div class="max-w-md">
+        <h2 class="font-romantis text-4xl text-rose-500 mb-6">Untukmu...</h2>
+        <p
+          id="teks-typing"
+          class="text-lg leading-relaxed italic text-gray-700 cursor min-h-[100px]"
+        ></p>
+
+        <button
+          id="btn-ke-jadwal"
+          onclick="tampilkanJadwal()"
+          class="hidden mt-10 px-8 py-3 border-2 border-rose-500 text-rose-500 font-bold rounded-full hover:bg-rose-500 hover:text-white transition duration-500 shadow-lg"
+        >
+          Lihat Rencana Hari Ini ✨
         </button>
+      </div>
     </section>
 
-    <section id="screen-ucapan" class="hidden-section min-h-screen flex flex-col items-center justify-center text-center p-8 bg-white">
-        <div class="max-w-md">
-            <h2 class="font-romantis text-4xl text-rose-500 mb-6">Untukmu...</h2>
-            <p id="teks-typing" class="text-lg leading-relaxed italic text-gray-700 cursor min-h-[100px]"></p>
-            
-            <button id="btn-ke-jadwal" onclick="tampilkanJadwal()" class="hidden mt-10 px-8 py-3 border-2 border-rose-500 text-rose-500 font-bold rounded-full hover:bg-rose-500 hover:text-white transition duration-500 shadow-lg">
-                Lihat Rencana Hari Ini ✨
-            </button>
-        </div>
-    </section>
+    <section
+      id="screen-jadwal"
+      class="hidden-section py-16 px-6 max-w-md mx-auto"
+    >
+      <h2
+        class="text-3xl font-romantis text-center text-rose-700 mb-10 underline decoration-rose-300 fade-in"
+      >
+        Agenda Spesial Hari Ini
+      </h2>
 
-    <section id="screen-jadwal" class="hidden-section py-16 px-6 max-w-md mx-auto">
-        <h2 class="text-3xl font-romantis text-center text-rose-700 mb-10 underline decoration-rose-300 fade-in">Agenda Spesial Hari Ini</h2>
-        
-        <div class="relative border-l-2 border-rose-200 ml-4 space-y-10 fade-in">
-            <div class="relative pl-8">
-                <div class="absolute -left-[11px] top-1 w-5 h-5 bg-rose-500 rounded-full border-4 border-white shadow"></div>
-                <span class="text-xs font-bold text-rose-500 bg-rose-100 px-2 py-1 rounded">14:00 WIB</span>
-                <h3 class="font-bold text-lg text-gray-700 mt-2">Penjemputan 🚗</h3>
-                <p class="text-sm text-gray-500">Standby ya cantik! Aku akan jemput kamu tepat waktu di depan rumah.</p>
-            </div>
-
-            <div class="relative pl-8">
-                <div class="absolute -left-[11px] top-1 w-5 h-5 bg-rose-400 rounded-full border-4 border-white shadow"></div>
-                <span class="text-xs font-bold text-rose-500 bg-rose-100 px-2 py-1 rounded">15:00 WIB</span>
-                <h3 class="font-bold text-lg text-gray-700 mt-2">Otw Tujuan (Ba'da Ashar) 📍</h3>
-                <p class="text-sm text-gray-500">Kita berangkat santai menikmati sore sambil ngobrol di jalan.</p>
-            </div>
-
-            <div class="relative pl-8">
-                <div class="absolute -left-[11px] top-1 w-5 h-5 bg-rose-600 rounded-full border-4 border-white shadow"></div>
-                <span class="text-xs font-bold text-rose-600 bg-rose-100 px-2 py-1 rounded">18:00 WIB</span>
-                <h3 class="font-bold text-lg text-gray-700 mt-2">Buka Bersama 🌙✨</h3>
-                <p class="text-sm text-gray-500">Waktunya makan enak dan merayakan hari spesialmu bersama-sama!</p>
-            </div>
+      <div class="relative border-l-2 border-rose-200 ml-4 space-y-10 fade-in">
+        <div class="relative pl-8">
+          <div
+            class="absolute -left-[11px] top-1 w-5 h-5 bg-rose-500 rounded-full border-4 border-white shadow"
+          ></div>
+          <span
+            class="text-xs font-bold text-rose-500 bg-rose-100 px-2 py-1 rounded"
+            >14:00 WIB</span
+          >
+          <h3 class="font-bold text-lg text-gray-700 mt-2">Penjemputan 🚗</h3>
+          <p class="text-sm text-gray-500">
+            Standby ya cantik! Aku akan jemput kamu tepat waktu di depan rumah.
+          </p>
         </div>
 
-        <div class="mt-16 text-center fade-in">
-            <p class="text-sm text-gray-600 mb-4 italic">Kabari aku kalau kamu sudah baca ya!</p>
-            <a href="https://wa.me/6281222074013?text=Happy%20Birthday%20juga%20sayang!%20Makasih%20ya,%20aku%20siap%20jam%202%20nanti%20❤️" 
-               class="inline-block px-8 py-3 bg-green-500 text-white rounded-2xl font-semibold shadow-lg hover:bg-green-600 transition">
-                Kirim Balasan Ke WhatsApp 📱
-            </a>
+        <div class="relative pl-8">
+          <div
+            class="absolute -left-[11px] top-1 w-5 h-5 bg-rose-400 rounded-full border-4 border-white shadow"
+          ></div>
+          <span
+            class="text-xs font-bold text-rose-500 bg-rose-100 px-2 py-1 rounded"
+            >15:00 WIB</span
+          >
+          <h3 class="font-bold text-lg text-gray-700 mt-2">
+            Otw Tujuan (Ba'da Ashar) 📍
+          </h3>
+          <p class="text-sm text-gray-500">
+            Kita berangkat santai menikmati sore sambil ngobrol di jalan.
+          </p>
         </div>
 
-        <footer class="py-10 text-center fade-in">
-            <p class="text-rose-500 text-sm font-semibold">I Love You to the Moon and Back 🌙</p>
-        </footer>
+        <div class="relative pl-8">
+          <div
+            class="absolute -left-[11px] top-1 w-5 h-5 bg-rose-600 rounded-full border-4 border-white shadow"
+          ></div>
+          <span
+            class="text-xs font-bold text-rose-600 bg-rose-100 px-2 py-1 rounded"
+            >18:00 WIB</span
+          >
+          <h3 class="font-bold text-lg text-gray-700 mt-2">
+            Buka Bersama 🌙✨
+          </h3>
+          <p class="text-sm text-gray-500">
+            Waktunya makan enak dan merayakan hari spesialmu bersama iqy cayang
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center fade-in">
+        <p class="text-sm text-gray-600 mb-4 italic">
+          Kabari aku kalau kamu sudah baca ya!
+        </p>
+        <a
+          href="https://wa.me/6281222074013?text=siap%20cayangg%20aku%20tunggu%20kamu,%20hati%20hati%20di%20jalan%20yahh%20babayy%20❤️"
+          class="inline-block px-8 py-3 bg-green-500 text-white rounded-2xl font-semibold shadow-lg hover:bg-green-600 transition"
+        >
+          Kirim Balasan Ke WhatsApp 📱
+        </a>
+      </div>
+
+      <footer class="py-10 text-center fade-in">
+        <p class="text-rose-500 text-sm font-semibold">Rifqy 🌙</p>
+      </footer>
     </section>
 
     <script>
-        const pesan = "Selamat ulang tahun ya sayang... Semoga di usia yang baru ini kamu makin bahagia, sehat selalu, dan dilancarkan rezekinya. Makasih udah sabar sama aku dan selalu ada buat aku. Hari ini, aku udah siapin rencana kecil buat ngerayain hari lahirmu. Semoga kamu suka ya! ❤️";
-        
-        let i = 0;
-        const speed = 50; 
+      const pesan =
+        "Selamat ulang tahun ya marsha sayang... Semoga di usia yang baru ini kamu makin bahagia, sehat selalu, dan dilancarkan rezekinya. Makasih udah sabar sama aku dan selalu ada buat aku. Hari ini, aku udah siapin rencana kecil buat ngerayain hari lahirmu. Semoga kamu suka ya! ❤️";
 
-        function mulaiKetik() {
-            // Sembunyikan Screen Awal, Munculkan Screen Ucapan
-            document.getElementById('screen-awal').classList.add('hidden-section');
-            document.getElementById('screen-ucapan').classList.remove('hidden-section');
-            
-            // Mulai fungsi mengetik
-            typeWriter();
-        }
+      let i = 0;
+      const speed = 50;
 
-        function typeWriter() {
-            if (i < pesan.length) {
-                document.getElementById("teks-typing").innerHTML += pesan.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            } else {
-                // Selesai mengetik: Hapus kursor, Munculkan tombol ke jadwal
-                document.getElementById("teks-typing").classList.remove('cursor');
-                const btnJadwal = document.getElementById("btn-ke-jadwal");
-                btnJadwal.classList.remove('hidden');
-                btnJadwal.classList.add('fade-in');
-            }
-        }
+      function mulaiKetik() {
+        // Sembunyikan Screen Awal, Munculkan Screen Ucapan
+        document.getElementById("screen-awal").classList.add("hidden-section");
+        document
+          .getElementById("screen-ucapan")
+          .classList.remove("hidden-section");
 
-        function tampilkanJadwal() {
-            // Sembunyikan Screen Ucapan, Munculkan Screen Jadwal
-            document.getElementById('screen-ucapan').classList.add('hidden-section');
-            document.getElementById('screen-jadwal').classList.remove('hidden-section');
-            
-            // Scroll ke paling atas agar konten jadwal terlihat jelas
-            window.scrollTo(0, 0);
+        // Mulai fungsi mengetik
+        typeWriter();
+      }
+
+      function typeWriter() {
+        if (i < pesan.length) {
+          document.getElementById("teks-typing").innerHTML += pesan.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        } else {
+          // Selesai mengetik: Hapus kursor, Munculkan tombol ke jadwal
+          document.getElementById("teks-typing").classList.remove("cursor");
+          const btnJadwal = document.getElementById("btn-ke-jadwal");
+          btnJadwal.classList.remove("hidden");
+          btnJadwal.classList.add("fade-in");
         }
+      }
+
+      function tampilkanJadwal() {
+        // Sembunyikan Screen Ucapan, Munculkan Screen Jadwal
+        document
+          .getElementById("screen-ucapan")
+          .classList.add("hidden-section");
+        document
+          .getElementById("screen-jadwal")
+          .classList.remove("hidden-section");
+
+        // Scroll ke paling atas agar konten jadwal terlihat jelas
+        window.scrollTo(0, 0);
+      }
     </script>
-
-</body>
+  </body>
 </html>
